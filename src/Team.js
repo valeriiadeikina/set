@@ -26,12 +26,12 @@ export default class Team {
 
   customIterator() {
     let index = 0;
+    const membersArray = [...this.members];
     return {
       next() {
-        if (index < this.members.length) {
-          index++;
+        if (index < membersArray.length) {
           return {
-            value: this.members[index],
+            value: membersArray[index++],
             done: false,
           };
         } else {
@@ -60,4 +60,6 @@ const cow = { cow: 1000 };
 
 team.addAll(halk, cat, dog, cow);
 
-console.log(team.customIterator());
+const iterator = team.customIterator();
+console.log(iterator.next());
+console.log(iterator.next());
